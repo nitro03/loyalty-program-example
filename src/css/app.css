@@ -1,0 +1,15 @@
+body {
+    background-color: #F0FBFF;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #05203B;
+    color: #FFFFFF;
+}
