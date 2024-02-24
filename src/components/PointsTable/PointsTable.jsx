@@ -56,7 +56,7 @@ const PointsTable = (props) => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {renderRows()}
+                        {renderRows(data)}
                     </TableBody>
                 </Table>
             </TableContainer>
