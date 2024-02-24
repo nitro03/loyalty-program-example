@@ -1,0 +1,13 @@
+.points_page--container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 50px;
+}
+
+.points_page--header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

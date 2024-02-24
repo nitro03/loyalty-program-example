@@ -23,6 +23,7 @@ const isNumeric = (n) => {
 
 export {
     isTimestamp,
+    isNumeric,
     getTimestamp,
     ERROR_ISO_STRING
 }

@@ -1,11 +1,11 @@
-import {fakeFail, fakeSuccess, fakeNotFound} from "./fakeResponse";
+import {fakeFail, fakeSuccess, fakeNotFound, ERROR_CODE, NOT_FOUND_CODE} from "./fakeResponse";
 import {parseUrl} from "./urlParser";
 import {getUserData, getTransactionsData} from "./dataProvider";
 
 const MIN_RESP_TIME = 50
 const MAX_RESP_TIME = 1000;
 
-const GET_USER_ENDPOINT = '/rest/api/user'
+const GET_USER_ENDPOINT = '/rest/api/users'
 const GET_TRANSACTIONS_ENDPOINT = '/rest/api/transactions'
 
 const getRandomRespTime = () => {
@@ -32,10 +32,16 @@ const serverLogic = (url) => {
 
 const processRequest = async (url) => {
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
         const timeout = getRandomRespTime();
         setTimeout(() => {
-            resolve(serverLogic(url));
+            const response = serverLogic(url)
+            const {code} = response;
+            if(code === ERROR_CODE || code === NOT_FOUND_CODE){
+                reject(response)
+            } else {
+                resolve(response);
+            }
         }, timeout);
     });
 

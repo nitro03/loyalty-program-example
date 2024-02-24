@@ -21,14 +21,17 @@ const searchTransactions = (usersIds, dateFrom, dateTo) => {
     const result = []
     const users = searchUsers(usersIds)
     users.forEach((user) => {
-        const transactionsList = user.transactions;
+        const {transactions} = user;
 
-        transactionsList.forEach((id) => {
+        transactions.forEach((id) => {
             result.push(getTransactionById(id));
         });
     })
     if (dateFrom) {
         return filterByDate(result, Number(dateFrom?.[0]), Number(dateTo?.[0]));
+    }
+    if (dateTo) {
+        return filterByDate(result, 0, Number(dateTo?.[0]));
     }
     return result;
 };
@@ -56,22 +59,17 @@ const filterByDate = (transactions, dateFrom, dateTo) => {
 };
 
 const getUserData = (queryParams) => {
-    if (queryParams) {
+    if (queryParams && Object.keys(queryParams).length !== 0) {
         return searchUsers(queryParams.id);
     }
-    return {
-        code: 200,
-        data: allUsers
-    };
+    return allUsers;
 };
 const getTransactionsData = (queryParams) => {
-    if (queryParams) {
-        return searchTransactions(queryParams.userId, queryParams.dateFrom, queryParams.dateTo);
+    if (queryParams && Object.keys(queryParams).length !== 0) {
+        const {userId, dateFrom, dateTo} = queryParams;
+        return searchTransactions(userId, dateFrom, dateTo);
     }
-    return {
-        code: 200,
-        data: allTransactions
-    };
+    return allTransactions;
 };
 
 

@@ -2,6 +2,10 @@ body {
     background-color: #F0FBFF;
 }
 
+main {
+    width: 100%;
+}
+
 footer {
     position: fixed;
     bottom: 0;
