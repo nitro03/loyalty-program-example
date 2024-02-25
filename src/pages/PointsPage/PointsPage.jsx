@@ -72,6 +72,8 @@ const PointsPage = () => {
             (e) => {
                 alert(e);
                 setTransactionsData(null)
+                setPointsSummary(0);
+                setMonthlyPointsData(null);
                 setIsLoading(false);
             })
     };

@@ -9,9 +9,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-import './scss/pointsTable.scss';
+import './scss/table.scss';
 
-const NO_DATA_INFO = 'No data';
 const MonthlyPointsTable = (props) => {
     const {data} = props;
 
@@ -27,7 +26,7 @@ const MonthlyPointsTable = (props) => {
                         key={row.id}
                         sx={{'&:last-child td, &:last-child th': {border: 0}}}
                     >
-                        <TableCell align="right">{row.month}</TableCell>
+                        <TableCell align="left">{row.month}</TableCell>
                         <TableCell align="right" sx={pointsSx}>{row.points}</TableCell>
                     </TableRow>
                 )
@@ -36,25 +35,20 @@ const MonthlyPointsTable = (props) => {
         return null;
     };
 
-    if (!data) {
+    if (!data || !data.length) {
         return null;
     }
 
-    if (!data.length) {
-        return (
-            <div className="table--info">{NO_DATA_INFO}</div>
-        )
-    }
     const headerSx = {
         fontWeight: 'bold'
     }
     return (
-        <div className="table--container">
+        <div className="table--container table--container__align_right">
             <TableContainer component={Paper}>
-                <Table sx={{minWidth: 650}} aria-label="simple table">
+                <Table sx={{minWidth: 200}} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell sx={headerSx} align="right">Month</TableCell>
+                            <TableCell sx={headerSx} align="left">Month</TableCell>
                             <TableCell sx={headerSx} align="right">Points</TableCell>
                         </TableRow>
                     </TableHead>
