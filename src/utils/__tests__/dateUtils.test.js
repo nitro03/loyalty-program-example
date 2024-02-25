@@ -16,11 +16,13 @@ describe('Date Utils tests', () => {
     });
     it('should return error while converting ISO String to timestamp', () => {
         const input = '2022-07-21'
+        let err = null;
         try {
             getTimestamp(input)
         } catch (e) {
-            expect(e.message).toBe(ERROR_ISO_STRING);
+            err = e;
         }
+        expect(err?.message).toBe(ERROR_ISO_STRING);
     });
 
 });
