@@ -24,9 +24,9 @@ const PointsTable = (props) => {
                         sx={{'&:last-child td, &:last-child th': {border: 0}}}
                     >
                         <TableCell>{row.description}</TableCell>
-                        <TableCell>{row.date}</TableCell>
-                        <TableCell>{row.amount}</TableCell>
-                        <TableCell>{row.points}</TableCell>
+                        <TableCell align="right">{row.date}</TableCell>
+                        <TableCell align="right">{row.amount}</TableCell>
+                        <TableCell align="right">{row.points}</TableCell>
                     </TableRow>
                 )
             });
@@ -43,16 +43,19 @@ const PointsTable = (props) => {
             <div className="points_table--info">{NO_DATA_INFO}</div>
         )
     }
+    const headerSx = {
+        fontWeight: 'bold'
+    }
     return (
         <div className="points_table--container">
             <TableContainer component={Paper}>
                 <Table sx={{minWidth: 650}} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Item</TableCell>
-                            <TableCell>Date</TableCell>
-                            <TableCell>Amount</TableCell>
-                            <TableCell>Points</TableCell>
+                            <TableCell sx={headerSx}>Item</TableCell>
+                            <TableCell sx={headerSx} align="right">Date</TableCell>
+                            <TableCell sx={headerSx} align="right">Amount</TableCell>
+                            <TableCell sx={headerSx} align="right">Points</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

@@ -8,7 +8,7 @@ import TimePeriodChooser from "../../components/TimePeriodChooser/TimePeriodChoo
 import PointsTable from "../../components/PointsTable/PointsTable";
 import {Button} from "@mui/material";
 import {GET_TRANSACTIONS_ENDPOINT} from "../../simulatedAPI/fakeServer";
-import {calculatePoints} from "../../logic/pointsCalculator";
+import {formatData} from "../../components/PointsTable/dataFormatter";
 
 const HEADER_TITLE = ' points'
 const HEADER_TITLE_ALL_USERS = 'All users points';
@@ -52,18 +52,6 @@ const PointsPage = () => {
 
     }
 
-    const addPointsData = (data) => {
-        if (data && Array.isArray(data)) {
-            return data.map((row) => {
-                return {
-                    ...row,
-                    points: calculatePoints(row.amount)
-                }
-            });
-        }
-        console.error('data is not an array');
-        return data;
-    }
     const getTableData = () => {
         setIsLoading(true);
         const url = getTableDataUrl();
@@ -71,7 +59,7 @@ const PointsPage = () => {
                 url
             },
             (data) => {
-                const dataWithPoints = addPointsData(data);
+                const dataWithPoints = formatData(data);
                 setTableData(dataWithPoints);
                 setIsLoading(false);
             },
@@ -127,7 +115,11 @@ const PointsPage = () => {
     }
 
     const renderLoader = () => {
-        return <Spinner/>
+        return (
+            <div className="points_page--spinner">
+                <Spinner/>
+            </div>
+        );
     }
 
     const renderTable = () => {
