@@ -1,0 +1,14 @@
+.points_summary--container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.points_summary--text {
+  color: #05203B;
+  font-size: 2rem;
+}
+
+.points_summary--text__highlight {
+  font-size: 3rem;
+  font-weight: bold;
+}

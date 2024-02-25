@@ -9,7 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-import './scss/PointsTable.scss';
+import './scss/pointsTable.scss';
 
 const NO_DATA_INFO = 'No data';
 const PointsTable = (props) => {
@@ -18,6 +18,10 @@ const PointsTable = (props) => {
     const renderRows = (data) => {
         if (Array.isArray(data)) {
             return data.map((row) => {
+                const pointsSx = {
+                    color: 'green',
+                    fontWeight: 'bold'
+                }
                 return (
                     <TableRow
                         key={row.id}
@@ -26,7 +30,7 @@ const PointsTable = (props) => {
                         <TableCell>{row.description}</TableCell>
                         <TableCell align="right">{row.date}</TableCell>
                         <TableCell align="right">{row.amount}</TableCell>
-                        <TableCell align="right">{row.points}</TableCell>
+                        <TableCell align="right" sx={pointsSx}>{row.points}</TableCell>
                     </TableRow>
                 )
             });

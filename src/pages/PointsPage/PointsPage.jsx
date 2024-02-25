@@ -8,7 +8,8 @@ import TimePeriodChooser from "../../components/TimePeriodChooser/TimePeriodChoo
 import PointsTable from "../../components/PointsTable/PointsTable";
 import {Button} from "@mui/material";
 import {GET_TRANSACTIONS_ENDPOINT} from "../../simulatedAPI/fakeServer";
-import {formatData} from "../../components/PointsTable/dataFormatter";
+import TableData from "../../components/PointsTable/TableData";
+import PointsSummary from "../../components/PointsTable/PointsSummary";
 
 const HEADER_TITLE = ' points'
 const HEADER_TITLE_ALL_USERS = 'All users points';
@@ -18,6 +19,7 @@ const PointsPage = () => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
     const [tableData, setTableData] = useState(null);
+    const [pointsSummary, setPointsSummary] = useState(0);
     const [dateFilter, setDateFilter] = useState(null);
     const [userData, setUserData] = useState(null);
 
@@ -59,8 +61,9 @@ const PointsPage = () => {
                 url
             },
             (data) => {
-                const dataWithPoints = formatData(data);
-                setTableData(dataWithPoints);
+                const tableData = new TableData(data);
+                setTableData(tableData.getFormattedData());
+                setPointsSummary(tableData.getSumOfPoints());
                 setIsLoading(false);
             },
             (e) => {
@@ -130,8 +133,9 @@ const PointsPage = () => {
         <div className={"points_page--container"}>
             {renderHeader()}
             <div className="points_page--table_container">
-                <TimePeriodChooser onDateChange={onDateChange}></TimePeriodChooser>
+                <TimePeriodChooser onDateChange={onDateChange}/>
                 {isLoading ? renderLoader() : renderTable()}
+                <PointsSummary points={pointsSummary}/>
             </div>
         </div>
     );
