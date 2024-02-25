@@ -73,6 +73,7 @@ const Search = () => {
                     <Autocomplete
                         id="auto-complete"
                         autoComplete
+                        isOptionEqualToValue={(option, value) => option.id === value.id}
                         options={getUserList()}
                         renderInput={(params) => (
                             <TextField {...params} label={SEARCHBOX_LABEL} variant="standard"/>

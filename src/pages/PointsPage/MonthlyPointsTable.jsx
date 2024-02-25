@@ -16,14 +16,14 @@ const MonthlyPointsTable = (props) => {
 
     const renderRows = (data) => {
         if (Array.isArray(data)) {
-            return data.map((row) => {
+            return data.map((row, index) => {
                 const pointsSx = {
                     color: 'green',
                     fontWeight: 'bold'
                 }
                 return (
                     <TableRow
-                        key={row.id}
+                        key={`monthly-${index}`}
                         sx={{'&:last-child td, &:last-child th': {border: 0}}}
                     >
                         <TableCell align="left">{row.month}</TableCell>
