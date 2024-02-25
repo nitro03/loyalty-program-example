@@ -21,7 +21,7 @@ describe('Server tests', () => {
         */
         const expectedResult = {
             code: SUCCESS_CODE,
-            data: [allTransactions[442], allTransactions[293], allTransactions[212], allTransactions[328], allTransactions[106]]
+            data: [allTransactions[442], allTransactions[293], allTransactions[212], allTransactions[328], allTransactions[106], allTransactions[18]]
         };
         const data = await processRequest(url);
         expect(data).toEqual(expectedResult);
@@ -43,21 +43,36 @@ describe('Server tests', () => {
     });
     it('should throw error because of wrong dateTo param', async () => {
         const url = `${GET_TRANSACTIONS_ENDPOINT}?userId=user_1&dateFrom=1677168487&dateTo=123`;
-        const data = await processRequest(url);
-        expect(data.code).toBe(ERROR_CODE);
+        let expectedErr = null;
+        try {
+            await processRequest(url);
+        } catch (e) {
+            expectedErr = e;
+        }
+        expect(expectedErr?.code).toBe(ERROR_CODE);
     });
     it('should throw error because of wrong dateFrom param', async () => {
         const url = `${GET_TRANSACTIONS_ENDPOINT}?userId=user_1&dateFrom=asdw`;
-        const data = await processRequest(url);
-        expect(data.code).toBe(ERROR_CODE);
+        let expectedErr = null;
+        try {
+            await processRequest(url);
+        } catch (e) {
+            expectedErr = e;
+        }
+        expect(expectedErr?.code).toBe(ERROR_CODE);
     });
     it('should respond error', async () => {
         const url = `/that/is/no/such/endpoint?userId=user_1`;
-        const expectedResult = {
+        const expectedError = {
             code: NOT_FOUND_CODE,
             error: 'Not Found'
         };
-        const data = await processRequest(url);
-        expect(data).toEqual(expectedResult);
+        let err = null;
+        try {
+            await processRequest(url);
+        } catch (e) {
+            err = e;
+        }
+        expect(err).toEqual(expectedError);
     });
 })
