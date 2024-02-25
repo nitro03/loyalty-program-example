@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import './scss/pointsSummary.scss';
 
-const LABEL = 'Points sum: '
+const LABEL = 'Total points: '
 const PointsSummary = (props) => {
     const {points} = props;
     return (

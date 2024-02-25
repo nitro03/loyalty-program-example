@@ -19,3 +19,9 @@
   height: 150px;
   width: 100%;
 }
+
+.points_page--points_summary {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}

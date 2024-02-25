@@ -12,7 +12,7 @@ import Paper from '@mui/material/Paper';
 import './scss/pointsTable.scss';
 
 const NO_DATA_INFO = 'No data';
-const PointsTable = (props) => {
+const TransactionsTable = (props) => {
     const {data} = props;
 
     const renderRows = (data) => {
@@ -44,14 +44,14 @@ const PointsTable = (props) => {
 
     if (!data.length) {
         return (
-            <div className="points_table--info">{NO_DATA_INFO}</div>
+            <div className="table--info">{NO_DATA_INFO}</div>
         )
     }
     const headerSx = {
         fontWeight: 'bold'
     }
     return (
-        <div className="points_table--container">
+        <div className="table--container">
             <TableContainer component={Paper}>
                 <Table sx={{minWidth: 650}} aria-label="simple table">
                     <TableHead>
@@ -71,8 +71,8 @@ const PointsTable = (props) => {
     );
 };
 
-PointsTable.propTypes = {
+TransactionsTable.propTypes = {
     data: PropTypes.array
 }
 
-export default PointsTable;
+export default TransactionsTable;

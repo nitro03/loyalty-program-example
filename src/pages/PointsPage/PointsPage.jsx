@@ -1,15 +1,16 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 
-import './scss/pointPage.scss';
+import './scss/pointsPage.scss';
 import ApiCaller from "../../apiClient/apiCaller";
 import {Spinner} from "react-bootstrap";
 import TimePeriodChooser from "../../components/TimePeriodChooser/TimePeriodChooser";
-import PointsTable from "../../components/PointsTable/PointsTable";
+import TransactionsTable from "./TransactionsTable";
 import {Button} from "@mui/material";
 import {GET_TRANSACTIONS_ENDPOINT} from "../../simulatedAPI/fakeServer";
-import TableData from "../../components/PointsTable/TableData";
-import PointsSummary from "../../components/PointsTable/PointsSummary";
+import TableData from "./logic/TableData";
+import PointsSummary from "./PointsSummary";
+import MonthlyPointsTable from "./MonthlyPointsTable";
 
 const HEADER_TITLE = ' points'
 const HEADER_TITLE_ALL_USERS = 'All users points';
@@ -18,8 +19,9 @@ const PointsPage = () => {
     const {id} = useParams();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
-    const [tableData, setTableData] = useState(null);
+    const [transactionsData, setTransactionsData] = useState(null);
     const [pointsSummary, setPointsSummary] = useState(0);
+    const [monthlyPointsData, setMonthlyPointsData] = useState(null);
     const [dateFilter, setDateFilter] = useState(null);
     const [userData, setUserData] = useState(null);
 
@@ -62,13 +64,14 @@ const PointsPage = () => {
             },
             (data) => {
                 const tableData = new TableData(data);
-                setTableData(tableData.getFormattedData());
+                setTransactionsData(tableData.getTransactionsData());
                 setPointsSummary(tableData.getSumOfPoints());
+                setMonthlyPointsData(tableData.getPointsDataByMonth());
                 setIsLoading(false);
             },
             (e) => {
                 alert(e);
-                setTableData(null)
+                setTransactionsData(null)
                 setIsLoading(false);
             })
     };
@@ -125,8 +128,16 @@ const PointsPage = () => {
         );
     }
 
-    const renderTable = () => {
-        return <PointsTable data={tableData}/>;
+    const renderData = () => {
+        return (
+            <>
+                <TransactionsTable data={transactionsData}/>
+                <div className="points_page--points_summary">
+                    <MonthlyPointsTable data={monthlyPointsData}/>
+                    <PointsSummary points={pointsSummary}/>
+                </div>
+            </>
+        );
     }
 
     return (
@@ -134,8 +145,7 @@ const PointsPage = () => {
             {renderHeader()}
             <div className="points_page--table_container">
                 <TimePeriodChooser onDateChange={onDateChange}/>
-                {isLoading ? renderLoader() : renderTable()}
-                <PointsSummary points={pointsSummary}/>
+                {isLoading ? renderLoader() : renderData()}
             </div>
         </div>
     );
