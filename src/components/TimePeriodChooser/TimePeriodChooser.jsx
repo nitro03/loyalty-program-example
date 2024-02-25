@@ -5,10 +5,12 @@ import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 
 import './scss/timePeriodChooser.scss';
 import PropTypes from "prop-types";
+import {Button} from "@mui/material";
 
 const DATE_FROM_LABEL = 'Date From';
 const DATE_TO_LABEL = 'Date To';
 const DATE_FORMAT = 'DD-MM-YYYY';
+const CLEAR_DATE_BTN_LABEL = 'Clear dates';
 
 const TimePeriodChooser = (props) => {
 
@@ -23,6 +25,11 @@ const TimePeriodChooser = (props) => {
         })
     }, [dateFrom, dateTo, onDateChange]);
 
+    const clearDates = () =>{
+        setDateFrom(null);
+        setDateTo(null);
+    };
+
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <div className="date_picker">
@@ -34,6 +41,9 @@ const TimePeriodChooser = (props) => {
                             format={DATE_FORMAT}
                             value={dateTo}
                             onChange={(newValue) => setDateTo(newValue)}/>
+                <Button onClick={clearDates}>
+                    {CLEAR_DATE_BTN_LABEL}
+                </Button>
             </div>
         </LocalizationProvider>
     );

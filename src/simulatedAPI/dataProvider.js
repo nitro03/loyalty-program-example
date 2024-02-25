@@ -3,6 +3,7 @@ import allTransactions from '../data/transactions.json';
 import {getTimestamp, isTimestamp} from "../utils/dateUtils";
 
 const WRONG_DATE_FORMAT_MSG = 'Date is not in timestamp format';
+const WRONG_DATES_ORDER = '"Date from" must be earlier than "Date to"';
 
 const searchUsers = (usersIds) => {
     const result = []
@@ -49,8 +50,11 @@ const filterByDate = (transactions, dateFrom, dateTo) => {
     return transactions.filter((transaction) => {
         const transactionDate = getTimestamp(transaction.date)
         if (dateTo) {
-            if (!isTimestamp(dateTo) || dateFrom > dateTo) {
+            if (!isTimestamp(dateTo)) {
                 throw new Error(`dateTo - ${WRONG_DATE_FORMAT_MSG}`);
+            }
+            if(dateFrom > dateTo) {
+                throw new Error(WRONG_DATES_ORDER);
             }
             return transactionDate >= dateFrom && transactionDate <= dateTo;
         }
