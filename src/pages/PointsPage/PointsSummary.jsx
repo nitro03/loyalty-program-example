@@ -7,10 +7,10 @@ const LABEL = 'Total points: '
 const PointsSummary = (props) => {
     const {points} = props;
     return (
-        <div className="points_summary--container">
-            <span className="points_summary--text">
+        <div className="points_summary__container">
+            <span className="points_summary__text">
                 {LABEL}
-                <span className="points_summary--text__highlight">{points}</span>
+                <span className="points_summary__text--highlight">{points}</span>
             </span>
         </div>
     );

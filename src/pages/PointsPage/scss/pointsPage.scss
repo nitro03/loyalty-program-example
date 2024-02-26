@@ -1,4 +1,4 @@
-.points_page--container {
+.points_page__container {
   display: flex;
   width: 100%;
   justify-content: center;
@@ -6,13 +6,13 @@
   padding-top: 50px;
 }
 
-.points_page--header {
+.points_page__header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.points_page--spinner {
+.points_page__spinner {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +20,7 @@
   width: 100%;
 }
 
-.points_page--points_summary {
+.points_page__points_summary {
   display: flex;
   justify-content: space-between;
   flex-direction: column-reverse;

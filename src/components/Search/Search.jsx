@@ -69,7 +69,7 @@ const Search = () => {
     const renderSearch = () => {
         return (
             <>
-                <div className={"search--searchbox"}>
+                <div className={"search__searchbox"}>
                     <Autocomplete
                         id="auto-complete"
                         autoComplete
@@ -81,7 +81,7 @@ const Search = () => {
                         onChange={handleChange}
                     />
                 </div>
-                <div className={"search--button"}>
+                <div className={"search__button"}>
                     <Button disabled={!chosenUser} onClick={btnOnClick} variant="outlined">
                         {BTN_LABEL}
                     </Button>
@@ -90,7 +90,7 @@ const Search = () => {
         );
     }
     return (
-        <div className={"search--container"}>
+        <div className={"search__container"}>
             {isLoading ? renderLoader() : renderSearch()}
         </div>
     );

@@ -4,7 +4,7 @@ import './scss/home.scss';
 
 const Home = () => {
     return (
-        <div className={"home--container"}>
+        <div className={"home__container"}>
             <Search/>
         </div>
     );

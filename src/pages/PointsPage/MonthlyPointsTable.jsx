@@ -43,7 +43,7 @@ const MonthlyPointsTable = (props) => {
         fontWeight: 'bold'
     }
     return (
-        <div className="table--container table--container__align_right">
+        <div className="table__container table__container--align_right">
             <TableContainer component={Paper}>
                 <Table sx={{minWidth: 200}} aria-label="simple table">
                     <TableHead>

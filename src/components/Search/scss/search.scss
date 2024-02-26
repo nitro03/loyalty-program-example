@@ -1,4 +1,4 @@
-.search--container {
+.search__container {
   display: flex;
   width: 100%;
   justify-content: center;
@@ -7,13 +7,13 @@
   padding-top: 5rem;
 }
 
-.search--searchbox {
+.search__searchbox {
   width: 100%;
   min-width: 200px;
   max-width: 50rem;
   position: relative;
 }
 
-.search--button {
+.search__button {
   margin-top: 50px;
 }

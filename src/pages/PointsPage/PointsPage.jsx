@@ -115,7 +115,7 @@ const PointsPage = () => {
             navigate('/');
         }
         return (
-            <div className="points_page--header">
+            <div className="points_page__header">
                 <h2>{title}</h2>
                 <Button onClick={backBtnOnCLick}>{BACK_BTN_LABEL}</Button>
             </div>
@@ -124,7 +124,7 @@ const PointsPage = () => {
 
     const renderLoader = () => {
         return (
-            <div className="points_page--spinner">
+            <div className="points_page__spinner">
                 <Spinner/>
             </div>
         );
@@ -134,7 +134,7 @@ const PointsPage = () => {
         return (
             <>
                 <TransactionsTable data={transactionsData}/>
-                <div className="points_page--points_summary">
+                <div className="points_page__points_summary">
                     <MonthlyPointsTable data={monthlyPointsData}/>
                     <PointsSummary points={pointsSummary}/>
                 </div>
@@ -143,7 +143,7 @@ const PointsPage = () => {
     }
 
     return (
-        <div className={"points_page--container"}>
+        <div className={"points_page__container"}>
             {renderHeader()}
             <div className="points_page--table_container">
                 <TimePeriodChooser onDateChange={onDateChange}/>

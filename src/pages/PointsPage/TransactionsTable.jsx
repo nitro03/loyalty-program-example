@@ -44,14 +44,14 @@ const TransactionsTable = (props) => {
 
     if (!data.length) {
         return (
-            <div className="table--info">{NO_DATA_INFO}</div>
+            <div className="table__info">{NO_DATA_INFO}</div>
         )
     }
     const headerSx = {
         fontWeight: 'bold'
     }
     return (
-        <div className="table--container">
+        <div className="table__container">
             <TableContainer component={Paper}>
                 <Table sx={{minWidth: 650}} aria-label="simple table">
                     <TableHead>
